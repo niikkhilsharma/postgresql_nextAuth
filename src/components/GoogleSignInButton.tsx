@@ -1,17 +1,18 @@
-import { FC, ReactNode } from 'react';
-import { Button } from './ui/button';
+import { FC, ReactNode } from 'react'
+import { Button } from './ui/button'
+import { signIn } from 'next-auth/react'
 
 interface GoogleSignInButtonProps {
-  children: ReactNode;
+	children: ReactNode
 }
 const GoogleSignInButton: FC<GoogleSignInButtonProps> = ({ children }) => {
-  const loginWithGoogle = () => console.log('login with google');
+	const loginWithGoogle = () => signIn('google', { callbackUrl: '/admin' })
 
-  return (
-    <Button onClick={loginWithGoogle} className='w-full'>
-      {children}
-    </Button>
-  );
-};
+	return (
+		<Button onClick={loginWithGoogle} className="w-full">
+			{children}
+		</Button>
+	)
+}
 
-export default GoogleSignInButton;
+export default GoogleSignInButton
